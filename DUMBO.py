@@ -28,7 +28,7 @@ def compute_md5(filename):
     hash_md5 = hashlib.md5()
     try:
         with open(filename, 'rb') as f:
-            for chunk in iter(lambda: f.read(4096), b""):
+            for chunk in iter(lambda: f.read(4096), b""):   #you don't have enough ram, dummy. read in chunks.
                 hash_md5.update(chunk)
         return filename, hash_md5.hexdigest()
     except Exception as Problem:
@@ -84,4 +84,8 @@ def md5_truncate():
         report.write(str(gigabytes))
         report.write(' GB')
     print('Total Bytes Removed - ', gigabytes, ' GB')
-md5_truncate()
+
+#******************* Lift Off *****************************
+
+if __name__ == '__main__':
+    md5_truncate()
